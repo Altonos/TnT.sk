@@ -1,0 +1,17 @@
+on place of tnt:
+	set {tnt::%player%} to event-location
+	add gold nugget named "&4Zünder" to player
+	wait 2000 ticks
+	delete {tnt::%player%}
+
+
+on left click with gold nugget:
+	
+	block at {tnt::%player%} is tnt
+	wait 1 tick
+	spawn tnt at {tnt::%player%}
+    
+	delete {tnt::%player%}
+	remove gold nugget named "&4Zünder" from player's inventory 
+
+
