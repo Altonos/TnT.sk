@@ -1,16 +1,40 @@
+on load:
+	register new shapeless recipe for tnt named "&4Super Tnt" using tnt, diamond, air, air, air, air, air, air, air
+
+
+
 on place of tnt:
 	set {tnt::%player%} to event-location
-	add gold nugget named "&4Zünder" to player
-	wait 2000 ticks
-	delete {tnt::%player%}
+	if player has tnt with name "&4Super Tnt":
+		cancel event
+		remove tnt named "&4Super Tnt" from player's inventory 
+		wait 1 tick
+		set block at {tnt::%player%} to tnt
+		add gold nugget named "&4Zünder" to player
+		send "&6In 12 sekunden verschwindet das Tnt."
+		wait 7 seconds
+		send "&65"
+		wait 1 second
+		send "&64"
+		wait 1 second
+		send "&63"
+		wait 1 second
+		send "&62"
+		wait 1 second
+		send "&61"
+		wait 1 second
+		set block at {tnt::%player%} to air
+		remove gold nugget named "&4Zünder" from player's inventory 
+		delete {tnt::%player%}
+	else:
+		stop
 
 
 on left click with gold nugget:
-	
 	block at {tnt::%player%} is tnt
 	wait 1 tick
 	spawn tnt at {tnt::%player%}
-    
+	set block at {tnt::%player%} to air
 	delete {tnt::%player%}
 	remove gold nugget named "&4Zünder" from player's inventory 
 
